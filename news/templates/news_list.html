@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Social News Aggregator</title>
+</head>
+<body>
+  <h1>News Aggregator</h1>
+  <ul>
+    {% for article in articles %}
+      <li>
+        <a href="{{ article.url }}">{{ article.title }}</a> ({{ article.pub_date }})
+        {% if article.summary %}
+          <p><b>Description:</b> {{ article.summary }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

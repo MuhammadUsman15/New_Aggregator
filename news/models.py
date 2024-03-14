@@ -8,10 +8,10 @@ from django.contrib.auth import get_user_model
 #     interests = models.CharField()
 
 class Article(models.Model):
-    title = models.CharField()
+    title = models.TextField()
     url = models.URLField()
     pub_date = models.DateTimeField()
-    source = models.CharField()
+    source = models.TextField()
     summary = models.TextField(blank=True)
 
     def __str__(self):
