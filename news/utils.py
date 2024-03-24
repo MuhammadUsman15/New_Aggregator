@@ -13,11 +13,20 @@ def fetch_news(feed_url):
         
         # Exclude articles with None publication date
         if pub_date is not None:
+            # Fetch the image URL if available
+            image_url = None
+            if 'media_content' in entry:
+                for media in entry.media_content:
+                    if media.get('medium') == 'image':
+                        image_url = media['url']
+                        break
+
             article = Article(
                 title=entry.title,
                 url=entry.link,
                 pub_date=pub_date,
                 summary=entry.summary if hasattr(entry, 'summary') else '',
+                image_url=image_url,  # Add the image URL to the Article object
             )
             articles.append(article)
     
