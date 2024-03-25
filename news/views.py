@@ -19,9 +19,8 @@ def news_list(request):
         # Fetch articles using the fetch_news function if cache is empty
         feed_urls = [
             'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
-            # 'https://www.cbsnews.com/latest/rss/us',
             'https://feeds.nbcnews.com/nbcnews/public/news',
-            'https://slate.com/feeds/all.rss'
+            'https://slate.com/feeds/all.rss',
         ]
         articles = []
         for url in feed_urls:
