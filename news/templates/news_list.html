@@ -37,9 +37,29 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">News Aggregator</a>
-      <!-- You can add navigation links or dropdown menus here -->
+      <!-- Use flex utilities to align items to the right -->
+      <div class="d-flex justify-content-end">
+        <ul class="navbar-nav">
+          <!-- Add login, register, and logout links/buttons based on user authentication -->
+          {% if user.is_authenticated %}
+            <!-- Show logout button if the user is authenticated -->
+            <li class="nav-item">
+              <a class="nav-link" href="logout">Logout</a>
+            </li>
+          {% else %}
+            <!-- Show login and register buttons if the user is not authenticated -->
+            <li class="nav-item">
+              <a class="nav-link" href="login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="'register">Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </nav>
+  
 
   <div class="container mt-4">
     <h1 class="mb-4">Latest News</h1>
@@ -54,7 +74,7 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title"><a href="{{ article.url }}" class="card-link">{{ article.title }}</a></h5>
+              <h5 class="card-title"><a href="{{ article.url }}" class="card-link" target="_blank">{{ article.title }}</a></h5> <!-- Added target="_blank" to open in a new tab -->
               <p class="card-text">Source: {{ article.website_name }}</p>
               <p class="card-text">Publication Date: {{ article.pub_date|date:"F d, Y, g:i A" }}</p> <!-- Display the formatted publication date -->
               {% if article.summary %}
